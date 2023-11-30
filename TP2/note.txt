@@ -1,3 +1,0 @@
-Notez bien : Les programmes fournis incluent la solution du TP 1. Cependant, je n'ai pas eu le temps de terminer 
-le roque et la vérification de l'échec et mat. Je vais essayer de les compléter dans les prochains jours, si le 
-temps le permet. Ceci dit, cela ne dérange en rien la réalisation du travail du TP 2.
