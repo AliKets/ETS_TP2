@@ -14,13 +14,24 @@ public class PanneauChatPrive extends PanneauChat {
     private JButton bAccepterOuInviter, bRefuser;
     private FenetreEchecs fenetreEchecs;
     public PanneauChatPrive() {
-        bAccepterOuInviter = new JButton("Inviter échec");
+        bAccepterOuInviter = new JButton("Inviter/Accepter partie d'échecs");
         bRefuser = new JButton("Refuser");
 
         bAccepterOuInviter.setActionCommand("ACCEPTER");
         bRefuser.setActionCommand("REFUSER");
 
-        //à compléter
+        // Ajouter les boutons au panneau
+        JPanel boutonsPanel = new JPanel();
+        boutonsPanel.add(bAccepterOuInviter);
+        boutonsPanel.add(bRefuser);
+
+        // Cacher le bouton de refus initialement
+        bRefuser.setVisible(false);
+
+        // Ajouter les composants au panneau principal
+        this.setLayout(new BorderLayout());
+        this.add(boutonsPanel, BorderLayout.NORTH);
+
 
     }
     @Override
@@ -30,10 +41,13 @@ public class PanneauChatPrive extends PanneauChat {
         bRefuser.addActionListener(ecouteur);
     }
     public void invitationEchecRecue() {
-        //à compléter
+        bAccepterOuInviter.setText("Accepter");
+        bRefuser.setVisible(true);
     }
+
     public void invitationEchecAnnulee() {
-        //à compléter
+        bAccepterOuInviter.setText("Inviter échec");
+        bRefuser.setVisible(false);
     }
 
     public void setFenetreEchecs(FenetreEchecs fenetreEchecs) {

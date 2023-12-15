@@ -22,6 +22,17 @@ public class EcouteurListeConnectes extends MouseAdapter {
 
     @Override
     public void mouseClicked(MouseEvent evt) {
-        //à compléter
+        if (evt.getClickCount() == 2) {  // Vérifiez si c'est un double-clic
+            JList<String> listeConnectes = (JList<String>) evt.getSource();
+            int index = listeConnectes.locationToIndex(evt.getPoint());  // Obtenez l'index de l'élément cliqué
+            String alias = listeConnectes.getModel().getElementAt(index);
+
+            // Envoyer une commande JOIN au serveur avec l'alias
+            clientChat.envoyerCommande("JOIN " + alias);
+
+            // Ajouter l'invitation reçue au panneau des invitations
+            panneauInvitations.ajouterInvitationRecue(alias);
+        }
     }
+
 }

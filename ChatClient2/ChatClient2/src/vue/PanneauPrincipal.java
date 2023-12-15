@@ -61,6 +61,12 @@ public class PanneauPrincipal  extends JPanel {
         JSplitPane jsp1 = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,panneauChatPublic,bureau);
         jsp1.setDividerLocation(300);
         this.add(jsp1, BorderLayout.CENTER);
+
+        // classe d'écouteur pour les invitations
+        EcouteurInvitations ecouteurInvitations = new EcouteurInvitations(clientChat, panneauInvitations);
+
+        // Configurez le panneau des invitations avec l'écouteur
+        panneauInvitations.setEcouteur(ecouteurInvitations);
     }
 
     public void ajouterMessage(String msg) {
@@ -112,10 +118,19 @@ public class PanneauPrincipal  extends JPanel {
     }
 
     public void ajouterMessagePrive(String alias, String msg) {
-        String message = alias+">>"+msg;
-        System.out.println("PRIVÉ : "+alias+">>"+msg);
-        //à compléter
+        String message = alias + ">>" + msg;
+        System.out.println("PRIVÉ : " + message);
+    
+        PanneauChatPrive panneauChatPrive = panneauxPrives.get(alias); //connexion au chat privé
+    
+        if (panneauChatPrive != null) {
+            panneauChatPrive.ajouter(message);
+            } else {
+                System.out.println("Aucun panneau de chat privé trouvé pour l'alias : " + alias);
+            }
+        }
     }
+    
 
     public void inviteEchecs(String alias) {
         PanneauChatPrive pc = panneauxPrives.get(alias);

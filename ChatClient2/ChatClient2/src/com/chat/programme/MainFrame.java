@@ -99,9 +99,17 @@ public class MainFrame extends JFrame implements Runnable, Observateur {
         if (observable instanceof Client) {
             Client client = (Client)observable;
             if (!client.isConnecte()) {
+                // Si le client est déconnecté, active "Se connecter" et désactive "Se déconnecter"
+                miConnecter.setEnabled(true);
+                miDeconnecter.setEnabled(false);
                 this.setTitle(TITRE);
                 this.panneauPrincipal.setVisible(false);
                 panneauPrincipal.vider();
+            }
+            else {
+                // Si le client est connecté, désactive "Se connecter" et active "Se déconnecter"
+                miConnecter.setEnabled(false);
+                miDeconnecter.setEnabled(true);
             }
         }
     }
